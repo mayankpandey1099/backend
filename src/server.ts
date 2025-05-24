@@ -2,6 +2,7 @@ import express from "express";
 import connectDB from "./config/db";
 import authRoutes from "./routes/authRoutes";
 import importRoutes from "./routes/importRoutes";
+import showRoutes from "./routes/showRoutes";
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/import", importRoutes);
+app.use("/api/shows", showRoutes);
 
 app.get("/", (req, res) => {
   res
