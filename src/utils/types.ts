@@ -25,3 +25,9 @@ export interface UserData {
   password: string;
   age: number;
 }
+
+export interface ShowQuery {
+  rating?: { $ne: string };
+  type?: string | RegExp;
+  $or?: Array<{ [key: string]: { $regex: string; $options: string } }>;
+}
