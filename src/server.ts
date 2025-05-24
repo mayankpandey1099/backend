@@ -1,14 +1,17 @@
 import express from "express";
 import connectDB from "./config/db";
 import authRoutes from "./routes/authRoutes";
+import importRoutes from "./routes/importRoutes";
 
 const app = express();
 
 connectDB();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/auth", authRoutes);
+app.use("/api/import", importRoutes);
 
 app.get("/", (req, res) => {
   res

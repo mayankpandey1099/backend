@@ -2,27 +2,9 @@ import User from "../models/user";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import dotenv from "dotenv";
+import { ApiResponse, UserData } from "../utils/types";
 
 dotenv.config();
-
-interface UserData {
-  name: string;
-  email: string;
-  password: string;
-  age: number;
-}
-
-interface UserResponse {
-  name: string;
-  email: string;
-  age: number;
-}
-
-interface ApiResponse {
-  status: number;
-  message: string;
-  data: any;
-}
 
 export const registerUser = async (
   userData: UserData
