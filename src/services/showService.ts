@@ -67,3 +67,33 @@ export const searchShows = async (
     };
   }
 };
+
+export const getShowById = async (
+  showId: string,
+  userAge: number
+): Promise<ApiResponse> => {
+  try {
+    const show = await Show.findOne({ _id: showId });
+    if (!show) {
+      return { status: 404, message: "Show not found", data: null };
+    }
+    if (userAge < 18 && show.rating === "R") {
+      return {
+        status: 403,
+        message: "Age restriction: R-rated content",
+        data: null,
+      };
+    }
+    return {
+      status: 200,
+      message: "Show details retrieved successfully",
+      data: show,
+    };
+  } catch (error: any) {
+    return {
+      status: 500,
+      message: error.message || "Failed to retrieve show details",
+      data: null,
+    };
+  }
+};

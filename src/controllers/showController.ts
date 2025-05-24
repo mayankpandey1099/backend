@@ -24,3 +24,10 @@ export const searchShows = async (req: AuthRequest, res: Response) => {
   const response = await showService.searchShows(query, page, limit, userAge);
   res.status(response.status).json(response);
 };
+
+export const getShowDetails = async (req: AuthRequest, res: Response) => {
+  const showId = req.params.id;
+  const userAge = req.user?.age || 18;
+  const response = await showService.getShowById(showId, userAge);
+  res.status(response.status).json(response);
+};
