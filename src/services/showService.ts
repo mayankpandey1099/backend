@@ -14,7 +14,6 @@ export const getPaginatedShows = async (
     if (type) {
       query.type = new RegExp(`^${type}$`, "i");
     }
-    console.log({query});
 
     const total = await Show.countDocuments(query);
     const shows = await Show.find(query).skip(skip).limit(limit);
