@@ -1,12 +1,22 @@
+import dotenv from "dotenv";
+dotenv.config();
 import express from "express";
 import connectDB from "./config/db";
 import authRoutes from "./routes/authRoutes";
 import importRoutes from "./routes/importRoutes";
 import showRoutes from "./routes/showRoutes";
+import cors from "cors";
 
 const app = express();
 
 connectDB();
+
+app.use(
+  cors({
+    origin: process.env.CORS_ORIGIN,
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
